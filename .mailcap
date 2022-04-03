@@ -1,0 +1,11 @@
+text/html; lynx %s; print=lynx -dump %s;
+text/csv; gnumeric %s; print=cat %s;
+text/*; $EDITOR %s; print=cat %s;
+image/*; feh -B white --scale-down --auto-zoom --start-at %s; print=exiftool %s | fmt -sw80;
+video/*; mpv %s; print=file %s | cut -d: -f2;
+audio/*; mpv '%s'; print=mpv --aid=no --vid=no --sid=no '%s' || : ;
+application/pdf; zathura %s; print=pdftotext %s -;
+application/pgp-encrypted; gpg -d '%s'; copiousoutput;
+application/pgp-keys; gpg --import '%s'; copiousoutput;
+application/vnd.ms-powerpoint; libreoffice %s;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s;
